@@ -10,6 +10,7 @@ const HeaderBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 10000;
 `;
 
 const LeftBlock = styled.div`
@@ -29,21 +30,21 @@ const InputBlock = styled.div`
   display: flex;
   align-items: center;
   input {
-    width: 510px;
+    width: 550px;
     height: 50px;
     font-size: 18px;
     padding: 4px 16px;
     border: 1px solid gray;
-    border-right: none;
-    border-radius: 25px 0 0 25px;
+    border-radius: 25px;
   }
   button {
-    width: 50px;
-    height: 50px;
+    position: relative;
+    right: 45px;
+    width: 40px;
+    height: 40px;
     background: #bac8ff;
-    border: 1px solid gray;
-    border-left: none;
-    border-radius: 0 25px 25px 0;
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
 
     .fa-search {
