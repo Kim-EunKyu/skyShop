@@ -7,6 +7,8 @@ const FooterBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-top: 1px solid gray;
+  margin-top: 60px;
 `;
 
 const Footer = () => {

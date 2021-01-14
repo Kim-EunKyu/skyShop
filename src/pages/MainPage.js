@@ -4,7 +4,7 @@ import Header from "../components/common/Header";
 import SlideBanner from "../components/common/SlideBanner";
 import ProductList from "../components/product/ProductList";
 
-const MainPages = () => {
+const MainPage = () => {
   return (
     <>
       <Header />
@@ -15,4 +15,4 @@ const MainPages = () => {
   );
 };
 
-export default MainPages;
+export default MainPage;

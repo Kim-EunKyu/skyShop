@@ -2,6 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const HeaderBlock = styled.div`
   margin: 0 auto;
@@ -105,7 +107,7 @@ const Header = () => {
       <HeaderBlock>
         <LeftBlock>
           <FontAwesomeIcon icon={faBars} />
-          <h1>SKYPIA</h1>
+          <Logo />
           <InputBlock>
             <input placeholder="검색어를 입력해주세요" />
             <button>
@@ -123,8 +125,12 @@ const Header = () => {
             ))}
           </MenuLeftBlock>
           <MenuRightBlock>
-            <MenuItem>로그인</MenuItem>
-            <MenuItem>회원가입</MenuItem>
+            <Link to="/login">
+              <MenuItem> 로그인</MenuItem>
+            </Link>
+            <Link to="/register">
+              <MenuItem>회원가입</MenuItem>
+            </Link>
           </MenuRightBlock>
         </MenuBlock>
       </MenuConatiner>
