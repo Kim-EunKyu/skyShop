@@ -33,24 +33,51 @@ const AuthSubmit = styled.button`
   }
 `;
 
-const onSubmit = (e) => {
-  e.preventDefault();
-  alert("hello!");
-};
+const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+`;
 
-const AuthTemplete = ({ isRegister = false, buttonContent }) => {
+const AuthTemplete = ({
+  isRegister = false,
+  type,
+  form,
+  onChange,
+  onSubmit,
+  error,
+}) => {
   return (
-    <AuthTempleteBlock onSubmit={onSubmit}>
-      <AuthInput placeholder="아이디" />
-      <AuthInput placeholder="비밀번호를 입력해주세요." type="password" />
-      {isRegister && (
+    <>
+      <AuthTempleteBlock onSubmit={onSubmit}>
+        <h2>{type}</h2>
         <AuthInput
-          placeholder="비밀번호를 다시 입력해주세요."
-          type="password"
+          placeholder="아이디"
+          name="username"
+          onChange={onChange}
+          value={form.username}
         />
-      )}
-      <AuthSubmit>{buttonContent}</AuthSubmit>
-    </AuthTempleteBlock>
+        <AuthInput
+          placeholder="비밀번호를 입력해주세요."
+          type="password"
+          name="password"
+          onChange={onChange}
+          value={form.password}
+        />
+        {isRegister && (
+          <AuthInput
+            placeholder="비밀번호를 다시 입력해주세요."
+            type="password"
+            name="passwordConfirm"
+            onChange={onChange}
+            value={form.passwordConfirm}
+          />
+        )}
+        <AuthSubmit>{type}</AuthSubmit>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+      </AuthTempleteBlock>
+    </>
   );
 };
 
