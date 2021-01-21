@@ -26,19 +26,19 @@ function checkFailureSaga() {
   }
 }
 
-// function* logoutSaga() {
-//   try {
-//     yield call(authAPI.logout);
-//     localStorage.removeItem("user");
-//   } catch (e) {
-//     console.log(e);
-//   }
-// }
+function* logoutSaga() {
+  try {
+    yield call(authAPI.logout);
+    localStorage.removeItem("user");
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 export function* userSaga() {
   yield takeLatest(CHECK, checkSaga);
   yield takeLatest(CHECK_FAILURE, checkFailureSaga);
-  //   yield takeLatest(LOGOUT, logoutSaga);
+  yield takeLatest(LOGOUT, logoutSaga);
 }
 
 const initialState = {

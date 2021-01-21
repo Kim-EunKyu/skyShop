@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
 const ProductItemBlock = styled.div`
   width: 224px;
@@ -46,9 +47,12 @@ const InfoPrice = styled.div`
   font-size: 15px;
 `;
 
-const ProductItem = ({ imgsrc, title, price }) => {
+const ProductItem = ({ imgsrc, title, price, history }) => {
+  const onClick = () => {
+    history.push("/product");
+  };
   return (
-    <ProductItemBlock>
+    <ProductItemBlock onClick={onClick}>
       <ProductItemPicBlock>
         <ProductItemPic src={imgsrc} />
       </ProductItemPicBlock>
@@ -62,4 +66,4 @@ const ProductItem = ({ imgsrc, title, price }) => {
   );
 };
 
-export default ProductItem;
+export default withRouter(ProductItem);

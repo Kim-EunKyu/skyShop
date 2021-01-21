@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
+const HeaderContainer = styled.div`
+  position: static;
+  z-index: 10000;
+  ${(props) =>
+    props.fixed &&
+    css`
+      width: 100%;
+      margin: 0 auto;
+      position: fixed;
+      background-color: white;
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.06),
+        0px 0px 4px 0px rgba(0, 0, 0, 0.18);
+    `}
+`;
+
 const HeaderBlock = styled.div`
   margin: 0 auto;
-  margin-top: 30px;
-  width: 1076px;
+  width: 1240px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 10000;
 `;
 
 const LeftBlock = styled.div`
@@ -100,23 +113,34 @@ const MenuItem = styled.button`
 
 const MenuRightBlock = styled.div``;
 
-const Header = () => {
-  const menuLeftList = ["베스트", "쿠폰/혜택", "기획전", "오늘장보기"];
+const Header = ({ user, menuLeftList, onLogout }) => {
+  const [navbar, setNavbar] = useState(false);
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 85) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  });
+
   return (
     <>
-      <HeaderBlock>
-        <LeftBlock>
-          <FontAwesomeIcon icon={faBars} />
-          <Logo />
-          <InputBlock>
-            <input placeholder="검색어를 입력해주세요" />
-            <button>
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </InputBlock>
-        </LeftBlock>
-        <RightBlock>{/* <button>로그인</button> */}</RightBlock>
-      </HeaderBlock>
+      <HeaderContainer fixed={navbar ? true : false}>
+        <HeaderBlock>
+          <LeftBlock>
+            <FontAwesomeIcon icon={faBars} />
+            <Logo />
+            <InputBlock>
+              <input placeholder="검색어를 입력해주세요" />
+              <button>
+                <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </InputBlock>
+          </LeftBlock>
+          <RightBlock></RightBlock>
+        </HeaderBlock>
+      </HeaderContainer>
       <MenuConatiner>
         <MenuBlock>
           <MenuLeftBlock>
@@ -125,12 +149,23 @@ const Header = () => {
             ))}
           </MenuLeftBlock>
           <MenuRightBlock>
-            <Link to="/login">
-              <MenuItem> 로그인</MenuItem>
-            </Link>
-            <Link to="/register">
-              <MenuItem>회원가입</MenuItem>
-            </Link>
+            {user ? (
+              <>
+                <Link to="/">
+                  <MenuItem>{user.username}님 안녕하세요!</MenuItem>
+                </Link>
+                <MenuItem onClick={onLogout}>로그아웃</MenuItem>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <MenuItem> 로그인</MenuItem>
+                </Link>
+                <Link to="/register">
+                  <MenuItem>회원가입</MenuItem>
+                </Link>
+              </>
+            )}
           </MenuRightBlock>
         </MenuBlock>
       </MenuConatiner>
