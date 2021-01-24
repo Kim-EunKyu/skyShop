@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
+import ProductOtions from "./ProductOtions";
 
 const ProductDetailBlock = styled.div`
   width: 100%;
   /* min-height: calc(100vh); */
+`;
+
+const ProductMargin = styled.div`
+  width: 1280px;
 `;
 
 const ProductContainer = styled.div`
@@ -12,13 +17,13 @@ const ProductContainer = styled.div`
   display: flex;
   position: relative;
   margin: 0 auto;
-  border: 3px solid black;
+  /* border: 3px solid black; */
 `;
 
 const LeftDetail = styled.div`
   width: 880px;
   height: 2000px;
-  border: 3px solid black;
+  /* border: 3px solid black; */
 `;
 
 const Category = styled.div`
@@ -41,7 +46,8 @@ const RightDetail = styled.div`
   height: calc(100vh - 155px);
   position: sticky;
   top: 0px;
-  border: 3px solid black;
+  border-left: 1px solid #eee;
+  /* border: 3px solid black; */
 
   ${(props) =>
     props.fixed &&
@@ -49,6 +55,15 @@ const RightDetail = styled.div`
       height: calc(100vh - 85px);
       top: 85px;
     `}
+`;
+
+const BuyProduct = styled.div`
+  width: 320px;
+  position: absolute;
+  bottom: 0;
+  right: 16px;
+  left: 16px;
+  border: 1px solid black;
 `;
 
 const ProductDetail = () => {
@@ -64,20 +79,25 @@ const ProductDetail = () => {
 
   return (
     <ProductDetailBlock>
-      <ProductContainer>
-        <LeftDetail>
-          <Category>홈 쇼핑</Category>
-          <ProductInfoBlock>
-            <ProductImage src="/image/2546638124_B.jpg" />
-            <ProductInfo></ProductInfo>
-          </ProductInfoBlock>
-        </LeftDetail>
-        <RightDetail fixed={navbar ? true : false}>
-          <select>
-            <option value="hello" />
-          </select>
-        </RightDetail>
-      </ProductContainer>
+      <ProductMargin>
+        <ProductContainer>
+          <LeftDetail>
+            <Category>홈 쇼핑</Category>
+            <ProductInfoBlock>
+              <ProductImage src="/image/2546638124_B.jpg" />
+              <ProductInfo></ProductInfo>
+            </ProductInfoBlock>
+          </LeftDetail>
+          <RightDetail fixed={navbar ? true : false}>
+            <ProductOtions />
+            <BuyProduct>
+              <div
+                style={{ width: "320px", height: "240px", margin: "0" }}
+              ></div>
+            </BuyProduct>
+          </RightDetail>
+        </ProductContainer>
+      </ProductMargin>
     </ProductDetailBlock>
   );
 };

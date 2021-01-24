@@ -8,10 +8,7 @@ const ProductItemBlock = styled.div`
   cursor: pointer;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.06),
     0px 0px 4px 0px rgba(0, 0, 0, 0.18);
-
-  & + & {
-    margin: 0 8px;
-  }
+  margin: 0 8px;
 `;
 
 const ProductItemPicBlock = styled.div`

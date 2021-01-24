@@ -78,7 +78,7 @@ const RightBlock = styled.div`
 `;
 
 const MenuConatiner = styled.div`
-  width: 100%;
+  width: 1240px;
 
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.06),
     0px 0px 4px 0px rgba(0, 0, 0, 0.18);
