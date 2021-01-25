@@ -2,7 +2,10 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
+import { insertOption } from "../../modules/product";
+import ListOption from "./ListOption";
 
 const OptionBlock = styled.div`
   width: 320px;
@@ -28,6 +31,12 @@ const OptionName = styled.div`
   font-weight: bold;
   font-size: 18px;
   line-height: 60px;
+
+  ${(props) =>
+    props.isClick &&
+    css`
+      color: #f43142;
+    `}
 `;
 
 const OptionImg = styled.div`
@@ -68,14 +77,18 @@ const OptionList = styled.div`
   left: 0;
   width: 320px;
   border: 1px solid black;
+  border-top: none;
   border-color: #f43142;
   background-color: #fff;
   z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   ${(props) =>
     props.index &&
     css`
       top: calc((${props.index} * 68px) - 8px);
+      z-index: calc(100 - ${props.index});
     `}
   ${(props) =>
     !props.isClick &&
@@ -84,21 +97,37 @@ const OptionList = styled.div`
     `}
 `;
 
-const Option = ({ index, name }) => {
+const Lists = styled.ul`
+  padding: 0;
+`;
+
+const Option = ({ index, name, optionName, price }) => {
+  //   const dispatch = useDispatch();
+  //   let { options } = useSelector(({ product }) => ({
+  //     options: product.productdetail.options,
+  //   }));
+
   const [isClick, setIsClick] = useState(false);
 
   const onClickOption = () => {
     setIsClick(!isClick);
   };
+
   return (
     <li>
       <OptionBlock onClick={onClickOption} isClick={isClick}>
         <OptionSelected>
-          <OptionName>{name}</OptionName>
+          <OptionName isClick={isClick}>{name}</OptionName>
           <OptionImg isClick={isClick} />
         </OptionSelected>
       </OptionBlock>
-      <OptionList index={index} isClick={isClick}></OptionList>
+      <OptionList index={index} isClick={isClick}>
+        <Lists onClick={onClickOption}>
+          {optionName.map((value, idx) => (
+            <ListOption key={idx} value={value} price={price[idx]} />
+          ))}
+        </Lists>
+      </OptionList>
     </li>
   );
 };

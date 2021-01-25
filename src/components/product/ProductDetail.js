@@ -9,6 +9,7 @@ const ProductDetailBlock = styled.div`
 
 const ProductMargin = styled.div`
   width: 1280px;
+  margin: 0 auto;
 `;
 
 const ProductContainer = styled.div`
