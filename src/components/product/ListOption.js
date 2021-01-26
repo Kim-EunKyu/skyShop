@@ -28,13 +28,14 @@ const ListOption = ({ value, price }) => {
       }
     }
 
-    options.push({
+    const newOptions = {
       optionName: value,
-      count: 1,
+      count: "1",
       price,
-    });
+      totalPrice: +price,
+    };
 
-    dispatch(insertOption(options));
+    dispatch(insertOption(newOptions));
   };
 
   return (
