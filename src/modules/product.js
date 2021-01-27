@@ -1,19 +1,12 @@
 import { createAction, handleActions } from "redux-actions";
-import { createRequestActionTypes } from "../lib/createRequestSaga";
-import produce from "immer";
 
-const COUNT_PLUS = "product/COUNT_PLUS";
-const COUNT_MINUS = "product/COUNT_MINUS";
 const COUNT_CHANGE = "product/COUNT_CHANGE";
-
 const INSERT_OPTION = "product/INSERT_OPTION";
+const DELETE_OPTION = "product/DELETE_OPTIONc";
 
-// export const tempSetUser = createAction(TEMP_SET_USER, (user) => user);
-// export const check = createAction(CHECK);
-
-export const insertOption = createAction(INSERT_OPTION);
-export const countPlus = createAction(COUNT_PLUS);
 export const countChange = createAction(COUNT_CHANGE);
+export const insertOption = createAction(INSERT_OPTION);
+export const deleteOption = createAction(DELETE_OPTION);
 
 const initialState = {
   productdetail: {
@@ -24,13 +17,6 @@ const initialState = {
 
 export default handleActions(
   {
-    [INSERT_OPTION]: (state, { payload: options }) => ({
-      ...state,
-      productdetail: {
-        ...state.productdetail,
-        options: [...state.productdetail.options, options],
-      },
-    }),
     [COUNT_CHANGE]: (
       state,
       { payload: { optionName, count, price, index, totalPrice } }
@@ -52,11 +38,20 @@ export default handleActions(
         }),
       },
     }),
-    [COUNT_PLUS]: (state, { payload: options }) => ({
+    [INSERT_OPTION]: (state, { payload: options }) => ({
       ...state,
       productdetail: {
         ...state.productdetail,
-        options,
+        options: [...state.productdetail.options, options],
+      },
+    }),
+    [DELETE_OPTION]: (state, { payload: index }) => ({
+      ...state,
+      productdetail: {
+        ...state.productdetail,
+        options: state.productdetail.options.filter(
+          (option, idx) => idx !== index
+        ),
       },
     }),
 

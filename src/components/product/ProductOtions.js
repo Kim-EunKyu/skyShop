@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { countPlus } from "../../modules/product";
 import Option from "./Option";
 import ResultOption from "./ResultOption";
 
@@ -9,7 +8,7 @@ const ProductOptionsBlock = styled.div`
   position: absolute;
   top: 16px;
   left: 16px;
-  bottom: 240px;
+  bottom: 200px;
   overflow-y: auto;
   overflow-x: hidden;
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { countChange } from "../../modules/product";
+import { countChange, deleteOption } from "../../modules/product";
 
 const ResultOptionBlock = styled.li`
   position: relative;
@@ -93,6 +93,45 @@ const CountPlusButton = styled.button`
   }
 `;
 
+const RemoveOption = styled.button`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background-color: #eee;
+  opacity: 0.8;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    content: "";
+    width: 14px;
+    height: 2px;
+    margin: -1px 0 0 -7px;
+    background-color: #b3b3b3;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    content: "";
+    width: 14px;
+    height: 2px;
+    margin: -1px 0 0 -7px;
+    background-color: #b3b3b3;
+    transform: rotate(-45deg);
+  }
+`;
+
 const ResultOption = ({ value: { optionName, count, price }, index }) => {
   const dispatch = useDispatch();
   const { options } = useSelector(({ product }) => ({
@@ -101,7 +140,10 @@ const ResultOption = ({ value: { optionName, count, price }, index }) => {
 
   const onChangeCountInput = (e) => {
     const Evalue = e.target.value;
-
+    if (+Evalue < 1) {
+      alert("최소 1개 이상이어야 합니다.");
+      return;
+    }
     if (isNaN(Evalue) || Evalue === "") {
       console.log(Evalue);
       alert("숫자만 입력해주세요.");
@@ -118,14 +160,54 @@ const ResultOption = ({ value: { optionName, count, price }, index }) => {
       })
     );
   };
+
+  const onClickCountPlusButton = (e) => {
+    const count = +options[index].count + 1 + "";
+    if (count < 1) {
+      // alert("최소 1개 이상이어야 합니다.");
+      return;
+    }
+    dispatch(
+      countChange({
+        index,
+        optionName,
+        count,
+        price: price,
+        totalPrice: Number(count) * Number(price),
+      })
+    );
+  };
+
+  const onClickCountMinusButton = (e) => {
+    const count = +options[index].count - 1 + "";
+    if (count < 1) {
+      // alert("최소 1개 이상이어야 합니다.");
+      return;
+    }
+    dispatch(
+      countChange({
+        index,
+        optionName,
+        count,
+        price: price,
+        totalPrice: Number(count) * Number(price),
+      })
+    );
+  };
+
+  const onClickRemoveOption = (e) => {
+    dispatch(deleteOption(index));
+  };
+
   return (
     <ResultOptionBlock>
+      <RemoveOption onClick={onClickRemoveOption} />
       <p>{optionName}</p>
       <ChangeCount>
         <CountInput onChange={onChangeCountInput} value={count} />
         <ButtonGroup>
-          <CountMinusButton />
-          <CountPlusButton />
+          <CountMinusButton onClick={onClickCountMinusButton} />
+          <CountPlusButton onClick={onClickCountPlusButton} />
         </ButtonGroup>
       </ChangeCount>
       <br />

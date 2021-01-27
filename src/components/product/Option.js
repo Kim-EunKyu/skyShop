@@ -1,10 +1,6 @@
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
-import { insertOption } from "../../modules/product";
 import ListOption from "./ListOption";
 
 const OptionBlock = styled.div`
