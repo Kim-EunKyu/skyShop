@@ -30,9 +30,9 @@ const ProductOtions = () => {
     options: product.productdetail.options,
   }));
 
-  useEffect(() => {
-    console.log(options);
-  }, [options]);
+  // useEffect(() => {
+  //   console.log(options);
+  // }, [options]);
 
   //dummy data -> 실제로는 정제된 데이터를 가져와서 여기에 넣어주면 될 것 같다.
   const productInfo = [

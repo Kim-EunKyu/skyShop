@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
+import mainMenus from "./data";
+import SideMainMenu from "../sidebar/SideMainMenu";
 
 const HeaderContainer = styled.div`
   position: static;
@@ -115,21 +117,52 @@ const MenuItem = styled.button`
 
 const MenuRightBlock = styled.div``;
 
+const SideMenu = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: white;
+  z-index: 100;
+
+  border: 1px solid black;
+`;
+
 const Header = ({ user, menuLeftList, onLogout }) => {
   const [navbar, setNavbar] = useState(false);
 
-  window.addEventListener("scroll", () => {
+  const onScrollNavbar = () => {
     if (window.scrollY > 85) {
       setNavbar(true);
     } else {
       setNavbar(false);
     }
-  });
+  };
+
+  useEffect(() => {
+    // console.log(mainMenus);
+    window.addEventListener("scroll", onScrollNavbar);
+    return () => {
+      window.removeEventListener("scroll", onScrollNavbar);
+    };
+  }, []);
 
   return (
     <>
       <HeaderContainer fixed={navbar ? true : false}>
+        {/* 사이드바 메뉴 시작 */}
+        <SideMenu>
+          <div>로그인</div>
+          {/* {mainMenus.map((value, idx) => (
+            <SideMainMenu key={idx} mainmenu={value} />
+          ))} */}
+          <SideMainMenu mainmenu={mainMenus} />
+        </SideMenu>
+        {/* 사이드바 끝 */}
+        {/* 헤더 시작 */}
         <HeaderBlock>
+          {/* 헤더 왼쪽 */}
           <LeftBlock>
             <FontAwesomeIcon icon={faBars} />
             <Logo />
@@ -140,9 +173,12 @@ const Header = ({ user, menuLeftList, onLogout }) => {
               </button>
             </InputBlock>
           </LeftBlock>
+          {/* 헤더 오른쪽 */}
           <RightBlock></RightBlock>
         </HeaderBlock>
       </HeaderContainer>
+      {/* 헤더 끝 */}
+      {/* 메뉴 시작 */}
       <MenuConatiner>
         <MenuBlock>
           <MenuLeftBlock>

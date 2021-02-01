@@ -139,13 +139,20 @@ const ProductDetail = () => {
     options: product.productdetail.options,
   }));
 
-  window.addEventListener("scroll", () => {
+  const onScrollNavbar = () => {
     if (window.scrollY > 85) {
       setNavbar(true);
     } else {
       setNavbar(false);
     }
-  });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScrollNavbar);
+    return () => {
+      window.removeEventListener("scroll", onScrollNavbar);
+    };
+  }, []);
 
   useEffect(() => {
     let count = 0;
