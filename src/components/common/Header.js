@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
@@ -123,14 +123,54 @@ const SideMenu = styled.div`
   left: 0;
   width: 300px;
   height: 100vh;
-  background-color: white;
+  background-color: #f0f0f0;
   z-index: 100;
+`;
 
-  border: 1px solid black;
+const GrayScreen = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.6;
+  z-index: 50;
+`;
+
+const SideMenuHeader = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  margin-bottom: 20px;
+  background-color: white;
+`;
+
+const SideLoginBtn = styled.span`
+  line-height: 70px;
+  font-size: 30px;
+  font-weight: bold;
+  padding-left: 16px;
+  cursor: pointer;
+`;
+
+const CloseBtn = styled.span`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  font-size: 30px;
+  cursor: pointer;
 `;
 
 const Header = ({ user, menuLeftList, onLogout }) => {
   const [navbar, setNavbar] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
 
   const onScrollNavbar = () => {
     if (window.scrollY > 85) {
@@ -138,6 +178,14 @@ const Header = ({ user, menuLeftList, onLogout }) => {
     } else {
       setNavbar(false);
     }
+  };
+
+  const onClickSidebarOpen = () => {
+    setSidebar(true);
+  };
+
+  const onClickSidebarClose = () => {
+    setSidebar(false);
   };
 
   useEffect(() => {
@@ -152,19 +200,30 @@ const Header = ({ user, menuLeftList, onLogout }) => {
     <>
       <HeaderContainer fixed={navbar ? true : false}>
         {/* 사이드바 메뉴 시작 */}
-        <SideMenu>
-          <div>로그인</div>
-          {/* {mainMenus.map((value, idx) => (
-            <SideMainMenu key={idx} mainmenu={value} />
-          ))} */}
-          <SideMainMenu mainmenu={mainMenus} />
-        </SideMenu>
+        {sidebar && (
+          <>
+            <SideMenu>
+              <SideMenuHeader>
+                <SideLoginBtn>로그인</SideLoginBtn>
+                <CloseBtn onClick={onClickSidebarClose}>
+                  <FontAwesomeIcon icon={faTimes} />
+                </CloseBtn>
+              </SideMenuHeader>
+              <SideMainMenu mainmenu={mainMenus} />
+            </SideMenu>
+            <GrayScreen onClick={onClickSidebarClose} />
+          </>
+        )}
         {/* 사이드바 끝 */}
         {/* 헤더 시작 */}
         <HeaderBlock>
           {/* 헤더 왼쪽 */}
           <LeftBlock>
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon
+              icon={faBars}
+              onClick={onClickSidebarOpen}
+              style={{ cursor: "pointer" }}
+            />
             <Logo />
             <InputBlock>
               <input placeholder="검색어를 입력해주세요" />
@@ -211,4 +270,4 @@ const Header = ({ user, menuLeftList, onLogout }) => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
