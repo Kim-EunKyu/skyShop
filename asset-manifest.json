@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/skyShop/static/css/main.75732cbd.chunk.css",
+    "main.js": "/skyShop/static/js/main.aea7b07c.chunk.js",
+    "main.js.map": "/skyShop/static/js/main.aea7b07c.chunk.js.map",
+    "runtime-main.js": "/skyShop/static/js/runtime-main.d5b1794d.js",
+    "runtime-main.js.map": "/skyShop/static/js/runtime-main.d5b1794d.js.map",
+    "static/js/2.b3164656.chunk.js": "/skyShop/static/js/2.b3164656.chunk.js",
+    "static/js/2.b3164656.chunk.js.map": "/skyShop/static/js/2.b3164656.chunk.js.map",
+    "static/js/3.84ccc14c.chunk.js": "/skyShop/static/js/3.84ccc14c.chunk.js",
+    "static/js/3.84ccc14c.chunk.js.map": "/skyShop/static/js/3.84ccc14c.chunk.js.map",
+    "index.html": "/skyShop/index.html",
+    "static/css/main.75732cbd.chunk.css.map": "/skyShop/static/css/main.75732cbd.chunk.css.map",
+    "static/js/2.b3164656.chunk.js.LICENSE.txt": "/skyShop/static/js/2.b3164656.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d5b1794d.js",
+    "static/js/2.b3164656.chunk.js",
+    "static/css/main.75732cbd.chunk.css",
+    "static/js/main.aea7b07c.chunk.js"
+  ]
+}
