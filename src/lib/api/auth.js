@@ -3,8 +3,8 @@ import client from "./client";
 export const login = ({ username, password }) =>
   client.post(
     "/api/auth/login",
-    { username, password },
-    { withCredentials: true }
+    { username, password }
+    // { withCredentials: true }
   );
 
 export const register = ({ username, password }) =>

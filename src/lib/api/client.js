@@ -1,6 +1,4 @@
 import axios from "axios";
-const client = axios.create({
-  baseURL: "https://skyshop-project.herokuapp.com/",
-});
+const client = axios.create();
 
 export default client;
