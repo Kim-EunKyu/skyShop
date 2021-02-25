@@ -29,3 +29,13 @@
 1.  회원가입, 로그인
 2.  왼쪽 SideMenu bar
 3.  상품 상세정보 페이지
+
+### 사이트 화면 이미지
+
+![mainpage](./githubImg/skypia_mainpage.JPG) - 메인 페이지
+
+![loginpage](./githubImg/skypia_loginpage.JPG) - 로그인 페이지
+
+![productDetail](./githubImg/skypia_productDetailpage.JPG) - 상품 설명 페이지
+
+![sideMenubar](./githubImg/skypia_sidemenubar.JPG) - 사이드메뉴바
