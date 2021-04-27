@@ -1,7 +1,16 @@
+import { faTags, faTruck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import ProductOtions from "./ProductOtions";
+
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #eeeeee;
+  margin: 8px 0;
+`;
 
 const ProductDetailBlock = styled.div`
   width: 100%;
@@ -33,6 +42,8 @@ const Category = styled.div`
 `;
 
 const ProductInfoBlock = styled.div`
+  display: flex;
+  flex-direction: row;
   padding: 20px 40px 0 0;
 `;
 
@@ -41,7 +52,42 @@ const ProductImage = styled.img`
   height: 410px;
 `;
 
-const ProductInfo = styled.div``;
+const ProductInfo = styled.div`
+  padding-left: 16px;
+`;
+
+const ProductTitle = styled.div`
+  font-size: 25px;
+  /* border: 1px solid red; */
+`;
+const ProductPrice = styled.div`
+  font-size: 20px;
+  /* border: 1px solid red; */
+`;
+const ProductCoupon = styled.div`
+  /* border: 1px solid red; */
+`;
+
+const InfoTitleBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const InfoTitle = styled.div`
+  font-weight: bold;
+  margin-left: 8px;
+`;
+
+const CouponContents = styled.div`
+  font-size: 16px;
+  padding: 16px;
+  /* border: 1px solid red; */
+`;
+
+const ProductArrivalDate = styled.div`
+  /* border: 1px solid red; */
+`;
 
 const RightDetail = styled.div`
   width: 360px;
@@ -173,7 +219,35 @@ const ProductDetail = () => {
             <Category>홈 쇼핑</Category>
             <ProductInfoBlock>
               <ProductImage src="/image/2546638124_B.jpg" />
-              <ProductInfo></ProductInfo>
+              <ProductInfo>
+                <ProductTitle>
+                  락브로스 스마트 자동센서 자전거 후미등 인공지능 LED S8
+                </ProductTitle>
+                <ProductPrice>
+                  <strong style={{ fontSize: "30px" }}>
+                    {numberWithCommas(21800)}
+                  </strong>
+                  원
+                </ProductPrice>
+                <Divider />
+
+                <ProductCoupon>
+                  <InfoTitleBlock>
+                    <FontAwesomeIcon icon={faTags} size={20} />
+                    <InfoTitle>쿠폰가</InfoTitle>
+                  </InfoTitleBlock>
+                  <CouponContents>
+                    추가로 할인되는 쿠폰이 있습니다.
+                  </CouponContents>
+                </ProductCoupon>
+                <Divider />
+                <ProductArrivalDate>
+                  <InfoTitleBlock>
+                    <FontAwesomeIcon icon={faTruck} size={20} />
+                    <InfoTitle>무료배송</InfoTitle>
+                  </InfoTitleBlock>
+                </ProductArrivalDate>
+              </ProductInfo>
             </ProductInfoBlock>
           </LeftDetail>
           <RightDetail fixed={navbar ? true : false}>
