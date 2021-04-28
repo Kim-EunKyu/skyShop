@@ -33,8 +33,10 @@ const ProductContainer = styled.div`
 
 const LeftDetail = styled.div`
   width: 880px;
-  height: 2000px;
+  /* height: 2000px; */
+  height: 100%;
   /* border: 3px solid black; */
+  border: 1px solid red;
 `;
 
 const Category = styled.div`
@@ -89,6 +91,24 @@ const ProductArrivalDate = styled.div`
   /* border: 1px solid red; */
 `;
 
+const DateInfo = styled.div`
+  font-size: 20px;
+`;
+
+const ProductInfoMain = styled.div`
+  width: 100%;
+  border: 1px solid blue;
+`;
+const InfoMainMenuBlock = styled.div`
+  display: flex;
+  border: 1px solid green;
+`;
+const InfoMainMenu = styled.div`
+  flex: 1;
+  border: 1px solid red;
+`;
+
+//오른쪽 디테일
 const RightDetail = styled.div`
   width: 360px;
   height: calc(100vh - 155px);
@@ -193,6 +213,17 @@ const ProductDetail = () => {
     }
   };
 
+  const getTodayDate = () => {
+    const DAY = ["일", "월", "화", "수", "목", "금", "토"];
+    const today = new Date();
+    const arrivalDate = new Date(today.setDate(today.getDate() + 2));
+
+    const month = arrivalDate.getMonth() + 1; // 월
+    const date = arrivalDate.getDate(); // 날짜
+    const day = today.getDay(); // 요일
+    return `${month}/${date}(${DAY[day]}) 도착 예정`;
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", onScrollNavbar);
     return () => {
@@ -237,7 +268,7 @@ const ProductDetail = () => {
                     <InfoTitle>쿠폰가</InfoTitle>
                   </InfoTitleBlock>
                   <CouponContents>
-                    추가로 할인되는 쿠폰이 있습니다.
+                    추가로 할인되는 쿠폰이 없습니다.
                   </CouponContents>
                 </ProductCoupon>
                 <Divider />
@@ -246,9 +277,18 @@ const ProductDetail = () => {
                     <FontAwesomeIcon icon={faTruck} size={20} />
                     <InfoTitle>무료배송</InfoTitle>
                   </InfoTitleBlock>
+                  <DateInfo>{getTodayDate()}</DateInfo>
                 </ProductArrivalDate>
               </ProductInfo>
             </ProductInfoBlock>
+            <ProductInfoMain>
+              <InfoMainMenuBlock>
+                <InfoMainMenu>상품정보</InfoMainMenu>
+                <InfoMainMenu>{"Q&A"}</InfoMainMenu>
+                <InfoMainMenu>리뷰</InfoMainMenu>
+                <InfoMainMenu>판매자정보</InfoMainMenu>
+              </InfoMainMenuBlock>
+            </ProductInfoMain>
           </LeftDetail>
           <RightDetail fixed={navbar ? true : false}>
             <ProductOtions />
