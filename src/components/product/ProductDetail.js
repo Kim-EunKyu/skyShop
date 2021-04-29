@@ -36,6 +36,7 @@ const LeftDetail = styled.div`
   /* height: 2000px; */
   height: 100%;
   /* border: 3px solid black; */
+  margin-right: 20px;
   border: 1px solid red;
 `;
 
@@ -105,8 +106,45 @@ const InfoMainMenuBlock = styled.div`
 `;
 const InfoMainMenu = styled.div`
   flex: 1;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
+
+const InfoContents = styled.div`
+  margin-top: 50px;
+  border-top: 1px solid #bbbbbb;
+`;
+
+const InfoRow = styled.div`
+  display: flex;
+  flex: 1;
+  border-bottom: 1px solid #eeeeee;
+`;
+
+const InfoRowCol = styled.div`
+  display: flex;
+  flex: 1;
+`;
+
+const InfoRowTitle = styled.div`
+  display: flex;
+  align-items: center;
+  width: 150px;
+  padding: 16px;
+  background-color: #fafafa;
+  font-size: 13px;
+
+  /* border: 1px solid blue; */
+`;
+
+const InfoRowContents = styled.div`
+  flex: 1;
+  font-size: 13px;
+  padding: 16px;
+`;
+
+const Review = styled.div``;
+const QNA = styled.div``;
+const SellerInfo = styled.div``;
 
 //오른쪽 디테일
 const RightDetail = styled.div`
@@ -284,10 +322,68 @@ const ProductDetail = () => {
             <ProductInfoMain>
               <InfoMainMenuBlock>
                 <InfoMainMenu>상품정보</InfoMainMenu>
-                <InfoMainMenu>{"Q&A"}</InfoMainMenu>
                 <InfoMainMenu>리뷰</InfoMainMenu>
+                <InfoMainMenu>{"Q&A"}</InfoMainMenu>
                 <InfoMainMenu>판매자정보</InfoMainMenu>
               </InfoMainMenuBlock>
+              <InfoContents>
+                <InfoRow>
+                  <InfoRowCol>
+                    <InfoRowTitle>상품상태</InfoRowTitle>
+                    <InfoRowContents>새상품</InfoRowContents>
+                  </InfoRowCol>
+                  <InfoRowCol>
+                    <InfoRowTitle>상품번호</InfoRowTitle>
+                    <InfoRowContents>2546638124</InfoRowContents>
+                  </InfoRowCol>
+                </InfoRow>
+                <InfoRow>
+                  <InfoRowCol>
+                    <InfoRowTitle>배송방법</InfoRowTitle>
+                    <InfoRowContents>택배</InfoRowContents>
+                  </InfoRowCol>
+                  <InfoRowCol>
+                    <InfoRowTitle>배송가능지역</InfoRowTitle>
+                    <InfoRowContents>전국</InfoRowContents>
+                  </InfoRowCol>
+                </InfoRow>
+                <InfoRow>
+                  <InfoRowCol>
+                    <InfoRowTitle>영수증발행</InfoRowTitle>
+                    <InfoRowContents>온라인 현금영수증 발급</InfoRowContents>
+                  </InfoRowCol>
+                  <InfoRowCol>
+                    <InfoRowTitle>원산지</InfoRowTitle>
+                    <InfoRowContents>중국</InfoRowContents>
+                  </InfoRowCol>
+                </InfoRow>
+                <InfoRow>
+                  <InfoRowTitle>제조일자/유효기간</InfoRowTitle>
+                  <InfoRowContents>판매자에게 문의</InfoRowContents>
+                </InfoRow>
+                <InfoRow>
+                  <InfoRowTitle>A/S안내</InfoRowTitle>
+                  <InfoRowContents>2546638124</InfoRowContents>
+                </InfoRow>
+                <InfoRow>
+                  <InfoRowTitle>상품무게</InfoRowTitle>
+                  <InfoRowContents>
+                    <div> 1,000g(예상 기본무게)</div>
+                    <div>
+                      * 옵션 및 추가 구성상품은 제외된 무게이며, 실제 측정 시
+                      달라질 수 있습니다. 또한 해외배송비는 실제무게기준으로
+                      청구됩니다.
+                    </div>
+                  </InfoRowContents>
+                </InfoRow>
+                <InfoRow>
+                  <InfoRowTitle>브랜드</InfoRowTitle>
+                  <InfoRowContents>락브로스</InfoRowContents>
+                </InfoRow>
+              </InfoContents>
+              <Review>리뷰</Review>
+              <QNA></QNA>
+              <SellerInfo>판매자정보</SellerInfo>
             </ProductInfoMain>
           </LeftDetail>
           <RightDetail fixed={navbar ? true : false}>
